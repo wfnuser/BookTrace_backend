@@ -4,16 +4,22 @@ package booktrace;
  * Created by wfnuser on 16/12/24.
  */
 
+import org.hibernate.validator.constraints.CreditCardNumber;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
     @Autowired
-    private UserRepository repository;
+    private UserRepository userrepository;
+    @Autowired
+    private BookRepository bookrepository;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -22,11 +28,16 @@ public class Application implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        repository.deleteAll();
+        userrepository.deleteAll();
 
         // save a couple of customers
-        repository.save(new User("Alice", "123123"));
-        repository.save(new User("Bob", "123123"));
+        List<Comment> comments = new ArrayList<>();
+        comments.add(new Comment("tall super is awesome", "ts1"));
+        comments.add(new Comment("tall super is awesome", "ts2"));
+        comments.add(new Comment("tall super is awesome", "ts3"));
+        userrepository.save(new User("Alice", "123123"));
+        userrepository.save(new User("Bob", "123123"));
+        bookrepository.save(new Book("高超", new Author("高超","中国"), "高超高超高超", comments, 9.9));
 
 //        // fetch all customers
 //        System.out.println("Customers found with findAll():");
