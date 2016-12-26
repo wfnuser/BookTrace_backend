@@ -8,6 +8,8 @@ public class Result {
 
     public boolean result;
     public User user;
+    public double averageGrade;
+    public double myGrade;
 
     public Result() {}
 
@@ -20,6 +22,11 @@ public class Result {
         this.user = user;
     }
 
+    public Result(boolean result, double averageGrade, double myGrade) {
+        this.result = result;
+        this.averageGrade = averageGrade;
+        this.myGrade = myGrade;
+    }
 
 
 }

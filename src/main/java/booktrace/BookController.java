@@ -18,6 +18,8 @@ public class BookController {
 
     @Autowired
     private BookRepository bookrepository;
+    @Autowired
+    private BookRepository userrepository;
 
 
     @RequestMapping("/search")
@@ -44,6 +46,28 @@ public class BookController {
             bookrepository.save(targetBook);
         }
         return bookStatus;
+    }
+
+    @RequestMapping(value = "/getgrade/{bookid}/{userid}")
+    public Result getMyGrade(@PathVariable String bookid, @PathVariable String userid) {
+        Book targetBook = bookrepository.findOne(bookid);
+        double mygrade = 0.0;
+        double average = 0.0;
+        if (targetBook != null) {
+            if(targetBook.grades != null) {
+                for (BookStatus eachbook : targetBook.grades
+                        ) {
+                    if (eachbook.userid.equals(userid)) {
+                        mygrade = eachbook.grade;
+                    }
+                    average = average + eachbook.grade;
+                }
+            } else {
+            }
+            return new Result(true, average, mygrade);
+        } else {
+            return new Result(false);
+        }
     }
 
 
