@@ -45,8 +45,13 @@ public class Book {
 
     public void gradeBook (BookStatus bookStatus) {
         if (this.grades != null) {
+            for (int i = 0; i < grades.size(); i++) {
+                if (grades.get(i).id.equals(bookStatus.id)) {
+                    grades.remove(i);
+                }
+            }
         } else {
-            this.grades = new ArrayList<BookStatus>();
+            this.grades = new ArrayList<>();
         }
         this.grades.add(bookStatus);
     }

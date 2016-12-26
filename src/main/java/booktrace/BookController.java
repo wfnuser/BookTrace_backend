@@ -6,6 +6,7 @@ import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,8 +21,8 @@ public class BookController {
 
 
     @RequestMapping("/search")
-    public Book search(@RequestParam(value="title") String title) {
-        return  bookrepository.findByTitleLike(title);
+    public List<Book> search(@RequestParam(value="title") String title) {
+        return  bookrepository.findAllByTitleLike(title);
     }
 
     @RequestMapping(value = "/comment", method = RequestMethod.POST)

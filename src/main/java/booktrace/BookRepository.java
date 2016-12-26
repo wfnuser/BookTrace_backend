@@ -7,8 +7,11 @@ package booktrace;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.query.StringBasedMongoQuery;
 
+import java.util.List;
+
 public interface BookRepository extends MongoRepository<Book, String> {
 
-    public Book findByTitleLike(String title);
+    Book findByTitleLike(String title);
+    List<Book> findAllByTitleLike(String title);
 
 }

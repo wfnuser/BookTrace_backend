@@ -35,13 +35,13 @@ public class User {
     public void mark(BookStatus bookStatus) {
         if (books != null) {
             for (int i = 0; i < books.size(); i++) {
-                if (books.get(i).id == bookStatus.id) {
+                if (books.get(i).id.equals(bookStatus.id)) {
                     books.get(i).status = bookStatus.status;
                     return;
                 }
             }
         } else {
-            books = new ArrayList<BookStatus>();
+            books = new ArrayList<>();
         }
         this.books.add(bookStatus);
     }

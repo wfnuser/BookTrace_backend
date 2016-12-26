@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 
 import java.util.List;
+import java.util.concurrent.atomic.DoubleAccumulator;
 
 /**
  * Created by wfnuser on 16/12/24.
@@ -14,7 +15,7 @@ public class BookStatus {
     public String id;
     public String userid;
     public String status;
-    public Integer grade;
+    public Double grade;
 
     public BookStatus() {}
 
@@ -24,7 +25,7 @@ public class BookStatus {
         this.userid = userid;
     }
 
-    public BookStatus(String id, Integer grade, String userid) {
+    public BookStatus(String id, Double grade, String userid) {
         this.id = id;
         this.grade = grade;
         this.userid = userid;
