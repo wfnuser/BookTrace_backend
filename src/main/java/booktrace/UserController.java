@@ -17,29 +17,36 @@ public class UserController {
     private UserRepository userrepository;
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public User signup(@RequestBody User user) {
+    public Result signup(@RequestBody User user) {
         if (userrepository.findByUsername(user.username) == null) {
-            return userrepository.insert(user);
+            userrepository.insert(user);
+            return new Result(true);
         } else {
-            return userrepository.findByUsername("");
+            return new Result(false);
         }
     }
 
-    @RequestMapping(value = "/signin", method = RequestMethod.POST)
-    public boolean signin(@RequestBody User user) {
+    @RequestMapping(value = "/signin", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
+    public Result signin(@RequestBody User user) {
         User target = userrepository.findByUsername(user.username);
-        System.out.println(target.password);
-        System.out.println(user.password);
-
         if ( target != null) {
             if (target.password.equals(user.password))
-                return true;
+                return new Result(true, target);
             else
-                return false;
+                return new Result(false);
         } else {
-            return false;
+            return new Result(false);
         }
     }
+
+    @RequestMapping(value = "/mark", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
+    public BookStatus mark(@RequestBody BookStatus bookstatus) {
+        User targetUser = userrepository.findOne(bookstatus.userid);
+        targetUser.mark(bookstatus);
+        userrepository.save(targetUser);
+        return bookstatus;
+    }
+
 
     @RequestMapping("/user")
     public User user(@RequestParam(value="username", defaultValue="World") String username) {

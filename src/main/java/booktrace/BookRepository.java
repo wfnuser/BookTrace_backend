@@ -5,6 +5,7 @@ package booktrace;
  */
 
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.query.StringBasedMongoQuery;
 
 public interface BookRepository extends MongoRepository<Book, String> {
 

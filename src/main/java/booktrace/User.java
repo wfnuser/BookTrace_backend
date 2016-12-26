@@ -1,6 +1,10 @@
 package booktrace;
 
+import org.hibernate.validator.constraints.CreditCardNumber;
 import org.springframework.data.annotation.Id;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by wfnuser on 16/12/24.
@@ -12,6 +16,7 @@ public class User {
 
     public String username;
     public String password;
+    public List<BookStatus> books;
 
     public User() {}
 
@@ -23,8 +28,22 @@ public class User {
     @Override
     public String toString() {
         return String.format(
-                "User[id=%s, username='%s', password='%s']",
-                id, username, password);
+                "User[id=%s, username='%s', password='%s', books='%s']",
+                id, username, password, books);
+    }
+
+    public void mark(BookStatus bookStatus) {
+        if (books != null) {
+            for (int i = 0; i < books.size(); i++) {
+                if (books.get(i).id == bookStatus.id) {
+                    books.get(i).status = bookStatus.status;
+                    return;
+                }
+            }
+        } else {
+            books = new ArrayList<BookStatus>();
+        }
+        this.books.add(bookStatus);
     }
 
 }
