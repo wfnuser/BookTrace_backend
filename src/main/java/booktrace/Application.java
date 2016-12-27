@@ -28,7 +28,7 @@ public class Application implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        userrepository.deleteAll();
+//        userrepository.deleteAll();
         bookrepository.deleteAll();
 
         // save a couple of customers
@@ -38,8 +38,8 @@ public class Application implements CommandLineRunner {
         comments.add(new Comment("tall super is awesome", "ts3"));
         userrepository.save(new User("Alice", "123123"));
         userrepository.save(new User("Bob", "123123"));
-        bookrepository.save(new Book("高超", new Author("高超","中国"), "高超高超高超", comments, 9.9));
-        bookrepository.save(new Book("另一个高超", new Author("高超2","中国"), "6666666", comments, 9.9));
+        bookrepository.save(new Book("高超", new Author("高超","中国"), "高超高超高超", comments, 9.9, "123"));
+        bookrepository.save(new Book("另一个高超", new Author("高超2","中国"), "6666666", comments, 9.9,"9479"));
 
 //        // fetch all customers
 //        System.out.println("Customers found with findAll():");

@@ -16,17 +16,19 @@ public class BookStatus {
     public String userid;
     public String status;
     public Double grade;
+    public String bookname;
 
     public BookStatus() {}
 
-    public BookStatus(String id, String status, String userid) {
-        this.id = id;
+    public BookStatus(String isbn, String status, String userid, String bookname) {
+        this.id = isbn;
         this.status = status;
         this.userid = userid;
+        this.bookname = bookname;
     }
 
-    public BookStatus(String id, Double grade, String userid) {
-        this.id = id;
+    public BookStatus(String isbn, Double grade, String userid) {
+        this.id = isbn;
         this.grade = grade;
         this.userid = userid;
     }

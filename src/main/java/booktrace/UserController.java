@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.SystemEnvironmentPropertySource;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -42,6 +43,7 @@ public class UserController {
     @RequestMapping(value = "/mark", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
     public BookStatus mark(@RequestBody BookStatus bookstatus) {
         User targetUser = userrepository.findOne(bookstatus.userid);
+        System.out.print(targetUser);
         targetUser.mark(bookstatus);
         userrepository.save(targetUser);
         return bookstatus;

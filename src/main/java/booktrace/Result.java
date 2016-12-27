@@ -1,5 +1,7 @@
 package booktrace;
 
+import com.sun.org.apache.regexp.internal.RE;
+
 /**
  * Created by wfnuser on 16/12/24.
  */
@@ -10,6 +12,7 @@ public class Result {
     public User user;
     public double averageGrade;
     public double myGrade;
+    public String status;
 
     public Result() {}
 
@@ -26,6 +29,11 @@ public class Result {
         this.result = result;
         this.averageGrade = averageGrade;
         this.myGrade = myGrade;
+    }
+
+    public Result(boolean result, String status) {
+        this.result = result;
+        this.status = status;
     }
 
 

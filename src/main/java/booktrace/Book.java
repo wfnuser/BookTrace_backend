@@ -22,6 +22,7 @@ public class Book {
     public String id;
 
     public String title;
+    public String isbn;
 //    public String subtitle;
     public Author author;
     public String content;
@@ -31,15 +32,21 @@ public class Book {
 
     public Book() {}
 
-    public Book(String title, Author author, String content, List<Comment> comments, double grade) {
+    public Book(String title, Author author, String content, List<Comment> comments, double grade, String isbn) {
         this.title = title;
         this.author = author;
         this.content = content;
         this.comments = comments;
         this.grade = grade;
+        this.isbn = isbn;
     }
 
     public void addCommentToBook(Comment comment) {
+        if (this.comments != null) {
+
+        } else {
+            this.comments = new ArrayList<>();
+        }
         this.comments.add(comment);
     }
 
