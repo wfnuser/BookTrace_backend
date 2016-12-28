@@ -53,7 +53,7 @@ public class Book {
     public void gradeBook (BookStatus bookStatus) {
         if (this.grades != null) {
             for (int i = 0; i < grades.size(); i++) {
-                if (grades.get(i).id.equals(bookStatus.id)) {
+                if (grades.get(i).id.equals(bookStatus.id) && grades.get(i).userid.equals(bookStatus.userid)) {
                     grades.remove(i);
                 }
             }

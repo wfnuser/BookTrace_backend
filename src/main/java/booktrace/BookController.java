@@ -91,6 +91,7 @@ public class BookController {
                     }
                     average = average + eachbook.grade;
                 }
+                average = average / targetBook.grades.size();
             } else {
             }
             return new Result(true, average, mygrade);
